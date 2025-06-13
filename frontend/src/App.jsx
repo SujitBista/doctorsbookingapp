@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
+    // on devices greater than or equal to 640px (tablet and upper device) applies left and right margin of 10% on each corners
     <div className='mx-4 sm:mx-[10%]'>
         <Navbar />
         <Routes>
