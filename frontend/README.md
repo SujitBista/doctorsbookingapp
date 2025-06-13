@@ -1,12 +1,37 @@
-# React + Vite
+# 🏥 Doctor Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based application that allows patients to book appointments with doctors, manage schedules, and receive appointment reminders. It’s designed to streamline the interaction between patients and healthcare providers.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🧑‍⚕️ Doctor registration and profile management
+- 👥 Patient registration and login
+- 📅 Online appointment booking and calendar view
+- 🔔 Email/SMS reminders for appointments
+- 🕒 Real-time slot availability check
+- 🔒 Secure authentication and role-based access
+- 📊 Admin dashboard to manage users and appointments
+- 🌐 Responsive UI for both desktop and mobile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js / Next.js / HTML + TailwindCSS
+- **Backend:** Node.js / Express.js
+- **Database:** MongoDB / PostgreSQL
+- **Authentication:** JWT / OAuth
+- **Deployment:** Vercel / Heroku / Render
+
+---
+
+## 📦 Installation
+
+```bash
+git clone git@github.com:SujitBista/doctorsbookingapp.git
+cd doctorsbookingapp
+npm install
+npm run dev
+```
