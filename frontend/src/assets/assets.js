@@ -8,6 +8,8 @@ import Dermatologist from './Dermatologist.png'
 import Pediatricians from './Pediatricians.png'
 import Neurologist from './Neurologist.png'
 import Gastroenterologist from './Gastroenterologist.png'
+import doc1 from './doc1.png'
+import doc2 from './doc2.png'
 
 export const assets = {
     banner_doctors,
@@ -43,3 +45,50 @@ export const specialityData = [
     },
 ]
 
+export const doctors = [
+    {
+        _id: 'doc1',
+        name: 'Dr. Richard James',
+        image: doc1,
+        speciality: 'General physician',
+        degree: 'MBBS',
+        experience: '4 Years',
+        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care',
+        fees: 50,
+        adderess: {
+            line1: '17th Cross, Richmond',
+            line2: 'Circle, Ring Road, London'
+        },
+        avilable: true 
+    },
+    {
+        _id: 'doc2',
+        name: 'Dr. Emily Larson',
+        image: doc2,
+        speciality: 'Gynecologist',
+        degree: 'MBBS',
+        experience: '3 Years',
+        about: 'Dr. Emily has a strong commitment to delivering comprehensive medical care',
+        fees: 60,
+        address: {
+            line1: '27th Cross, Richmond',
+            line2: 'Circle, Ring Road, London'
+        },
+        avilable: true
+    },
+       {
+        _id: 'doc3',
+        name: 'Dr. Sarah Patel',
+        image: 'doc3',
+        speciality: 'Dermatologist',
+        degree: 'MBBS',
+        experience: '1 Years',
+        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care',
+        fees: 30,
+        address: {
+            line1: '27th Cross, Richmond',
+            line2: 'Circle, Ring Road, London'
+        },
+        avilable: false
+    }
+]
