@@ -10,12 +10,14 @@ import Neurologist from './Neurologist.png'
 import Gastroenterologist from './Gastroenterologist.png'
 import doc1 from './doc1.png'
 import doc2 from './doc2.png'
+import rightBanner from './right_banner.png'
 
 export const assets = {
     banner_doctors,
     group_profile,
     logo,
-    rightArrow
+    rightArrow,
+    rightBanner
 }
 
 export const specialityData = [
