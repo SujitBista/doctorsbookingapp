@@ -10,8 +10,8 @@ const TopDoctors = () => {
        <h1 className="text-4xl">Top Doctors To Book</h1>
        <p>Simply browse through our extensive list of trusted doctors.</p>
        <div className="flex gap-2">
-         { doctors.slice(0, 2).map(doctor => doctor.avilable && (
-                <div onClick={() => navigateToRoute(`/my-appointments/${doctor._id}`)} className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-transform duration-500">
+         { doctors.slice(0, 2).map((doctor, index) => doctor.avilable && (
+                <div key={index} onClick={() => navigateToRoute(`/my-appointments/${doctor._id}`)} className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-transform duration-500">
                     <img className="w-60 h-60" src={ doctor.image } alt='doctors' />
                     <div className="flex gap-2 items-center text-sm text-green-500 pl-2 pt-2">
                         <p className="w-2 h-2 bg-green-500 rounded-full"></p>

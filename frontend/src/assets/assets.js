@@ -52,7 +52,7 @@ export const doctors = [
         _id: 'doc1',
         name: 'Dr. Richard James',
         image: doc1,
-        speciality: 'General physician',
+        speciality: 'General Physician',
         degree: 'MBBS',
         experience: '4 Years',
         about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care',
@@ -92,5 +92,20 @@ export const doctors = [
             line2: 'Circle, Ring Road, London'
         },
         avilable: false
+    },
+           {
+        _id: 'doc4',
+        name: 'Dr. New',
+        image: doc1,
+        speciality: 'Gynecologist',
+        degree: 'MBBS',
+        experience: '1 Years',
+        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care',
+        fees: 30,
+        address: {
+            line1: '27th Cross, Richmond',
+            line2: 'Circle, Ring Road, London'
+        },
+        avilable: true
     }
 ]

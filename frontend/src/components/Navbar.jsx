@@ -15,8 +15,8 @@ const Navbar = () => {
     {label: 'CONTACT', to: '/contact'}
   ];
 
-   const nav = navLink.map((item) => (
-    <li>
+   const nav = navLink.map((item, index) => (
+    <li key={index}>
       <NavLink to={item.to}>
         { ( { isActive} ) => (
                 <>
@@ -30,7 +30,7 @@ const Navbar = () => {
   )
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
-      <img className="h-20 cursor-pointer" src={logo} alt="BookMyDoctor" />
+      <img onClick={() => navigateToRoute('/')} className="h-20 cursor-pointer" src={logo} alt="BookMyDoctor" />
 
       <ul className="hidden md:flex gap-5 font-medium">    
           { nav }
