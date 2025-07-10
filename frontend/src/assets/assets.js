@@ -91,7 +91,7 @@ export const doctors = [
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
         },
-        avilable: false
+        avilable: true
     },
            {
         _id: 'doc4',
