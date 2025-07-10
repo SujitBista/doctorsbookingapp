@@ -10,5 +10,5 @@ export default defineConfig(({mode}) => ({
     tailwindcss(),
     svgr(),
   ],
-  base: mode == 'development'? '/': '/doctorsbookingapp',
+  base: mode == 'development' ? '/': '/doctorsbookingapp',
 }))
