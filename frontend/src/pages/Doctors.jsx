@@ -27,7 +27,7 @@ const Doctors = () => {
             </div>
             <div className="w-full grid grid-cols-[1fr_1fr_1fr] gap-4">
                 {filteredDoctors.map((doctor, index) => doctor.avilable && (
-                        <div key={index} className="border bg-blue-50 border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-transform duration-500">
+                        <div onClick={() => navigate(`/my-appointments/${doctor._id}`)} key={index} className="border bg-blue-50 border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-transform duration-500">
                             <img className="w-full h-100" src={ doctor.image } alt='doctors' />
                             <div className="flex gap-2 items-center text-sm text-green-500 pl-2 pt-2">
                                 <p className="w-2 h-2 bg-green-500 rounded-full"></p>
