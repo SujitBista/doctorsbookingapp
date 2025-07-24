@@ -8,7 +8,8 @@ const Appointment = () => {
     const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     const [docInfo, setDocInfo] = useState(null)
     const [docSlots, setDocSlots] = useState([])
-    
+    const [slotIndex, setSlotIndex] = useState(0)
+
     //by defining useCallback function I mean the function won't change unless the dependecy array doctors and docId changes
     const fetchDocInfo = useCallback(() => {
         const matchedDoctor = doctors.find((doctor) => doctor._id === docId)
@@ -95,7 +96,7 @@ const Appointment = () => {
                  <div className="flex gap-3 mt-4 overflow-x-scroll w-full items-center">
                     {
                         docSlots.length && docSlots.map((item, index)=> (
-                            <div key={index} className="bg-blue-400 rounded-full text-white p-3">
+                            <div onClick={() => setSlotIndex(index)} key={index} className={`rounded-full text-white p-3 ${index === slotIndex ? 'bg-blue-400':'bg-gray-400'} hover:cursor-pointer`}>
                                 <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
                                 <p>{item[0] && item[0].datetime.getDate()}</p>
                             </div>
