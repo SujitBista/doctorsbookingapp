@@ -1,14 +1,16 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
+import AppointmentCalendar from '../components/AppointmentCalendar';
 
 const Appointment = () => {
     const { docId } = useParams()
     const { doctors } = useContext(AppContext)
-    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     const [docInfo, setDocInfo] = useState(null)
     const [docSlots, setDocSlots] = useState([])
     const [slotIndex, setSlotIndex] = useState(0)
+    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [availableDates, setAvailableDates] = useState([])
 
     //by defining useCallback function I mean the function won't change unless the dependecy array doctors and docId changes
     const fetchDocInfo = useCallback(() => {
@@ -32,10 +34,14 @@ const Appointment = () => {
         setDocSlots([])
         //getting current date
         let today = new Date()
+        const dates = []
+        
         for(let i = 0; i < 7; i++) {
             //getting date with index
             let currentDate = new Date(today)
             currentDate.setDate(today.getDate() + i)
+            dates.push(new Date(currentDate))
+            
             //setting end time of the date with index
             let endTime = new Date()
             endTime.setDate(today.getDate() + i)
@@ -63,6 +69,18 @@ const Appointment = () => {
 
             setDocSlots(prev => ([...prev, timeSlots]))
         }
+        
+        // Set available dates for calendar
+        setAvailableDates(dates)
+    }
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date)
+        // Find the index of the selected date in the slots array
+        const today = new Date()
+        const diffTime = date.getTime() - today.getTime()
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+        setSlotIndex(Math.max(0, diffDays))
     }
 
     return docInfo && (
@@ -90,19 +108,43 @@ const Appointment = () => {
                     </div>
                 </div>
             </div>
-            {/*----- Booking Slots ------ */}
-            <div className="mt-10 font-medium text-gray-700">
-                 <p>Booking Slot</p>
-                 <div className="flex gap-3 mt-4 overflow-x-scroll w-full items-center">
-                    {
-                        docSlots.length && docSlots.map((item, index)=> (
-                            <div onClick={() => setSlotIndex(index)} key={index} className={`rounded-full text-white p-3 ${index === slotIndex ? 'bg-blue-400':'bg-gray-400'} hover:cursor-pointer`}>
-                                <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
-                                <p>{item[0] && item[0].datetime.getDate()}</p>
+            {/*----- Modern Calendar ------ */}
+            <div className="mt-10">
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Select Appointment Date</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Calendar */}
+                    <div>
+                        <AppointmentCalendar 
+                            selectedDate={selectedDate}
+                            onDateSelect={handleDateSelect}
+                            availableDates={availableDates}
+                        />
+                    </div>
+                    
+                    {/* Time Slots for Selected Date */}
+                    <div>
+                        <h3 className="text-lg font-medium text-gray-900 mb-4">
+                            Available Times for {selectedDate.toLocaleDateString('en-US', { 
+                                weekday: 'long', 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            })}
+                        </h3>
+                        {docSlots[slotIndex] && (
+                            <div className="grid grid-cols-3 gap-3">
+                                {docSlots[slotIndex].map((slot, index) => (
+                                    <button
+                                        key={index}
+                                        className="p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors text-sm font-medium"
+                                    >
+                                        {slot.time}
+                                    </button>
+                                ))}
                             </div>
-                        ))
-                    }
-                 </div>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     )
