@@ -11,6 +11,7 @@ const Appointment = () => {
     const [slotIndex, setSlotIndex] = useState(0)
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [availableDates, setAvailableDates] = useState([])
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState(null)
 
     //by defining useCallback function I mean the function won't change unless the dependecy array doctors and docId changes
     const fetchDocInfo = useCallback(() => {
@@ -81,6 +82,29 @@ const Appointment = () => {
         const diffTime = date.getTime() - today.getTime()
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
         setSlotIndex(Math.max(0, diffDays))
+        // Reset selected time slot when date changes
+        setSelectedTimeSlot(null)
+    }
+
+    const handleTimeSlotSelect = (slot) => {
+        setSelectedTimeSlot(slot)
+    }
+
+    const handleBookAppointment = () => {
+        if (!selectedTimeSlot) {
+            alert('Please select a time slot before booking')
+            return
+        }
+        
+        // Log the selected date and time
+        console.log('Booking Appointment:')
+        console.log('Doctor:', docInfo.name)
+        console.log('Date:', selectedDate.toLocaleDateString())
+        console.log('Time:', selectedTimeSlot.time)
+        console.log('Full DateTime:', selectedTimeSlot.datetime)
+        
+        // Here you would typically make an API call to book the appointment
+        alert(`Appointment booked successfully!\n\nDoctor: ${docInfo.name}\nDate: ${selectedDate.toLocaleDateString()}\nTime: ${selectedTimeSlot.time}`)
     }
 
     return docInfo && (
@@ -132,17 +156,37 @@ const Appointment = () => {
                             })}
                         </h3>
                         {docSlots[slotIndex] && (
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="grid grid-cols-3 gap-3 mb-6">
                                 {docSlots[slotIndex].map((slot, index) => (
                                     <button
                                         key={index}
-                                        className="p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors text-sm font-medium"
+                                        onClick={() => handleTimeSlotSelect(slot)}
+                                        className={`p-3 border rounded-lg transition-colors text-sm font-medium ${
+                                            selectedTimeSlot && selectedTimeSlot.time === slot.time
+                                                ? 'bg-blue-500 text-white border-blue-500'
+                                                : 'border-gray-300 hover:bg-blue-50 hover:border-blue-300'
+                                        }`}
                                     >
                                         {slot.time}
                                     </button>
                                 ))}
                             </div>
                         )}
+                        
+                        {/* Booking Button */}
+                        <div className="mt-6">
+                            <button
+                                onClick={handleBookAppointment}
+                                disabled={!selectedTimeSlot}
+                                className={`w-full py-3 px-6 rounded-lg font-medium transition-colors ${
+                                    selectedTimeSlot
+                                        ? 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                }`}
+                            >
+                                {selectedTimeSlot ? 'Book Appointment' : 'Select a time slot to book'}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
