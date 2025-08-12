@@ -11,4 +11,9 @@ export default defineConfig(({mode}) => ({
     svgr(),
   ],
   base: mode == 'development' ? '/': '/doctorsbookingapp',
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/setupTests.js',
+  },
 }))
